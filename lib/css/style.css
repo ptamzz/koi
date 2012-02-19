@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/* 	
+	Description: Controls generic styling of the whole applicatiion
+	Version: 1.0
+	Date: 19/2/2012
+	Author: Pritam Pebam
+	Email: ptamzz@gmail.com
+	twitter: @ptamzz
+	URL: http://12bubbles.com
+*/
+
+/* Makeshift CSS Reset */  
+* { margin: 0; padding: 0; } 
+
+body { font-family: Tahoma, Geneva, sans-serif;	font-size: 12px; }
+
+.clear { clear: both; }
+
+.header { margin-top: 20px; }
+.row fieldset .form-actions { text-align: center; }
