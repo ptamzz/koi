@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Koi Mustache templating Demo</title>
+	
+	<!-- Here goes the CSS -->
+	<link rel="stylesheet" href='lib/css/bootstrap.css' type="text/css"/>
+	<link rel="stylesheet" href='lib/css/style.css' type="text/css"/> 
+	
+	<!--  To Check HTML5 support -->
+	<script src="lib/js/modernizr.min.js"></script>
+</head>
+<style>
+	
+</style>
+<body>
+
+<div class="container">
+	<div class="header row">
+		<div class="span12">
+			<h1>Koi : Quick Mustache JS Template renderer</h1>
+			<p>Koi (~ mustache in <a href="http://en.wikipedia.org/wiki/Manipuri_language" alt="Manipuri">Manipuri</a>) is a quick and simple way to test your JS mustache templates.</p>
+		</div>
+	</div>
+		
+		
+	<div class="row">
+		<fieldset>
+			<div class="control-group">
+				<div class="span4">
+					<legend>Result</legend>
+					<div id="result"><span class="help-block">Template will be generated here</span></div>
+				</div>
+				
+				<div class="span4">
+					<legend>Template</legend>
+					<textarea id="mustache" name="mustache" style="width: 280px; min-height: 300px;">
+<div>
+	<h3>{{title}}</h3>
+	{{#license}}
+		<a href="{{url}}">{{name}}</a>
+	{{/license}}
+	<h5>Available For</h5>
+	<ul>
+		{{#available}}
+			<li>{{.}}</li>
+		{{/available}}
+		{{^available}}
+			<li>No data found</li>
+		{{/available}}
+	</ul>
+</div>
+					</textarea>
+				</div>
+				<div class="span4">
+					<legend>JSON String</legend>
+					<textarea id="json" name="json" style="width: 280px; min-height: 300px;" >
+{
+"title": "Mustache JS Templates",
+"license": {
+	"name": "MIT license",
+	"url": "http://www.opensource.org/licenses/MIT"
+},
+"available": [
+	"Ruby",
+	"Javascript",
+	"Python",
+	"Erlang",
+	"more"
+]
+}
+					</textarea>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="form-actions">
+				<button type="button" class="btn btn-primary">Render Template</button>
+			</div>
+		</fieldset>
+	</div>
+	<div class="row">
+		<div class="span8 pull-left">
+			<p>Koi is made for <a href="http://mustache.github.com/">Mustache</a> and uses <a href="http://jquery.com/">jQuery</a> and <a href="http://icanhazjs.com/">ICanHaz</a> plugin for jQuery.</p>
+		</div>
+		<div class="span4 pull-right">
+			<p>Developed by <a href="http://ptamzz.com/">Pritam Pebam</a> under <a href="http://www.opensource.org/licenses/MIT">MIT License</a></p>
+		</div>
+	</div>
+</div>
+
+<!--  jQuery -->
+<script type="text/javascript" src="lib/js/jquery-1.7.1.min.js"></script>
+
+<!-- ICanHaz Moustache plugin for jQuery-->
+<script type="text/javascript" src="lib/js/ICanHaz.min.js"></script>
+
+<script>
+	$(function() {
+
+		$('.btn-primary').live('click', function(){
+			console.log($('#json').val());
+			var html, json = jQuery.parseJSON($('#json').val());
+
+			ich.clearAll();
+			ich.addTemplate('koi', $('#mustache').val());
+			
+			html = ich.koi(json);
+			$('#result').html(html);
+		});
+		
+	});
+</script>
+</body>
+</html>
